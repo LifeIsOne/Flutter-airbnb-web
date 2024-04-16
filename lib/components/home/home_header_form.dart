@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_airbnb/constants.dart';
 
 import '../../size.dart';
 import '../../styles.dart';
+import '../common/CommonFormFile.dart';
 
 class HomeHeaderForm extends StatelessWidget {
   const HomeHeaderForm({
@@ -57,43 +59,50 @@ class HomeHeaderForm extends StatelessWidget {
   Column _buildFormField() {
     return Column(
       children: [
-        CommonFormField(
-            // prefixText: "위치",
-            // hintText: "근처 추천 장소",
-            ),
+        CommonFormField(prefixText: "위치", hintText: "근처 추천 장소"),
         SizedBox(height: gap_s),
         Row(
-          children: [Column()],
-        )
+          children: [
+            Expanded(
+                child: CommonFormField(prefixText: "체크인", hintText: "날짜 입력")),
+            Expanded(
+                child: CommonFormField(prefixText: "체크아웃", hintText: "날짜 입력")),
+          ],
+        ),
+        SizedBox(
+          height: gap_s,
+        ),
+        Row(
+          children: [
+            Expanded(child: CommonFormField(prefixText: "성인", hintText: "2")),
+            Expanded(child: CommonFormField(prefixText: "어린이", hintText: "0")),
+          ],
+        ),
+        SizedBox(
+          height: gap_m,
+        ),
       ],
     );
   }
 
-  Column _buildFormSubmit() {
-    return Column(// TODO :
-
-        );
-  }
-}
-
-class CommonFormField extends StatelessWidget {
-  const CommonFormField({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        TextFormField(
-          textAlignVertical: TextAlignVertical.bottom,
-          // TextFormFiled 내부를 세로로 정렬!
-          decoration: InputDecoration(
-            // 3. TextFormFiled 내부에 패딩을 줄 수 있다
-            contentPadding: EdgeInsets.only(top: 30, left: 20, bottom: 10),
-          ),
-        )
-      ],
+  Widget _buildFormSubmit() {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: TextButton(
+        style: TextButton.styleFrom(
+            backgroundColor: kAccentColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            )),
+        onPressed: () {
+          print("검색 클릭됨");
+        },
+        child: Text(
+          "검색",
+          style: subtitle1(mColor: Colors.white),
+        ),
+      ),
     );
   }
 }

@@ -1,3 +1,3 @@
 import 'dart:ui';
 
-const kAccentColor = Color(0xFFF385C);
+const kAccentColor = Color(0xFFFF385C);
